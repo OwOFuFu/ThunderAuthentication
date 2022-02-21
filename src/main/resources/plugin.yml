@@ -1,0 +1,76 @@
+name: ThunderAuthentication
+version: '${project.version}'
+main: com.md_4.thunderauthentication.Main
+api-version: 1.18
+author: md_4 (Thom. G)
+website: https://github.com/md4Studios
+description: '${project.description}'
+
+commands:
+  thunderauthenticationpremium:
+    description: Premium command
+    aliases: [premium]
+  thunderauthenticationunpremium:
+    description: UnPremium command
+    aliases: [ unpremium ]
+  thunderauthentication:
+    description: Provides access to administrative functions of the plugin.
+    usage: /<command> [subcommands|help]
+    aliases: [tauth]
+  login:
+    description: Logs a player in.
+    usage: /<command> [password]
+    aliases: [l, logon, login]
+  logout:
+    description: Logs a player out.
+    usage: /<command>
+    aliases: [lo, logoff]
+  register:
+    description: Register a players password or emailaddress.
+    usage: /<command> [password/emailaddress]
+    aliases: [reg, Register]
+  setemail:
+    description: Changes a player's Email-Address.
+    usage: /<command> [emailaddress]
+  changepassword:
+    description: Changes a player's password.
+    usage: /<command> [oldPassword] [newPassword]
+    aliases: [cpwd, changepassword, changepass, passchange]
+  recoverpwd:
+    description: recover player's login by sending new password to player's Email-Address.
+    usage: /<command>
+
+permissions:
+  thunderauthentication.login:
+    description: Allows use of /login
+    default: true
+  thunderauthentication.logout:
+    description: Allows use of /logout
+    default: true
+  thunderauthentication.register:
+    description: Allows use of /register
+    default: true
+  thunderauthentication.changepassword:
+    description: Allows use of /changepassword
+    default: true
+  thunderauthentication.tauth:
+    description: Allows use of /thunderauthentication
+    default: op
+  thunderauthentication.nlpwd:
+    description: controls the NoLoginPassWrD on Login (if not set via nlpwdadd)
+    default: false
+  thunderauthentication.user:
+    description: Contains all permission nodes for non-administrative functions
+    default: false
+    children:
+      thunderauthentication.login: true
+      thunderauthentication.logout: true
+      thunderauthentication.register: true
+      thunderauthentication.changepassword: true
+      thunderauthentication.nlpwd: false
+  thunderauthentication.*:
+    description: Contains every permission node in ThunderAuthentication
+    default: false
+    children:
+      thunderauthentication.user: true
+      thunderauthentication.tauth: true
